@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSS ColorZik</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Toggle Script -->
+  
+
+ <style>
+    .gradient-box {
+      background: linear-gradient(to top, #000000, #4b2e1c, #eeaa15);
+      cursor: crosshair;
+    }
+    .hue-slider {
+      background: linear-gradient(
+        to top,
+        red, yellow, lime, cyan, blue, magenta, red
+      );
+    }
+    .picker-indicator {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border: 2px solid white;
+      border-radius: 50%;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <!-- 1. Site Name -->
+  <header class="bg-red-600 text-white p-4 text-center text-2xl font-bold">
+  CSS ColorZik
+  </header>
+
+  <!-- 2. Nav Bar -->
+  <nav class="bg-white shadow-md">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="text-2xl font-semibold text-red-600">ColorTools</div>
+
+      <!-- Desktop Links -->
+      <ul class="hidden md:flex gap-20 text-gray-700 font-medium">
+        <li><a href="#" class="hover:text-red-600"><i class="fas fa-fill-drip mr-1"></i>Picker</a></li>
+        <li><a href="/Gradient.html" class="hover:text-red-600"><i class="fas fa-sync-alt mr-1"></i>Gradient</a></li>
+        <li><a href="/chart.html" class="hover:text-red-600"><i class="fas fa-palette mr-1"></i>Chart</a></li>
+        <li><a href="/shades.html" class="hover:text-red-600"><i class="fas fa-font mr-1"></i>Shades</a></li>
+      </ul>
+
+      <!-- Mobile Icon -->
+      <button class="md:hidden text-xl text-gray-700" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Links -->
+    <ul id="mobile-menu" class="md:hidden px-4 pb-4 hidden flex-col gap-4 text-gray-700 font-medium">
+      <li><a href="#" class="block py-2 border-b"><i class="fas fa-fill-drip mr-1"></i>Picker</a></li>
+      <li><a href="/Gradient.html" class="block py-2 border-b"><i class="fas fa-sync-alt mr-1"></i>Gradient</a></li>
+      <li><a href="/chart.html" class="block py-2 border-b"><i class="fas fa-palette mr-1"></i>Chart</a></li>
+      <li><a href="/shades.html" class="block py-2"><i class="fas fa-font mr-1"></i>Shades</a></li>
+    </ul>
+  </nav>
+
+  <!-- Optional Content Placeholder -->
+  <section class="p-6 text-center">
+    <h2 class="text-2xl font-semibold mb-4">Welcome to the CSS Color Tool</h2>
+    <p class="text-gray-600">Pick, convert, and explore HTML color codes with ease.</p>
+
+  </section>
+
+
+   <!-- Header -->
+  <div class="w-full bg-grey-50  p-4 flex justify-between items-center border-none">
+    <div class="flex items-center space-x-4">
+      <div id="colorPreview" class="w-10 h-10 rounded border" style="background-color: #EEAA15;"></div>
+      <div>
+        <span class="text-gray-500">HEX:</span>
+        <span id="hexCode" class="font-bold">#EEAA15</span>
+      </div>
+      <div>
+        <span class="text-gray-500">RGB:</span>
+        <span id="rgbCode" class="font-bold">238, 170, 21</span>
+      </div>
+      <div>
+        <span class="text-gray-500">HSL:</span>
+        <span id="hslCode" class="font-bold">41°, 91%, 51%</span>
+      </div>
+    </div>
+    <button id="copyBtn" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center space-x-1">
+      <i class="fas fa-copy"></i> <span>Copy HEX</span>
+    </button>
+  </div>
+
+  <!-- Main Content -->
+  <main class="flex flex-1 overflow-hidden md:p-6 gap-4 flex-1">
+    <!-- Gradient Color Picker -->
+    <div class="relative flex-1 gradient-box flex items-center justify-center min-h-[200px]" id="gradientBox">
+      <div id="pickerIndicator" class="picker-indicator" style="top: 50%; left: 50%;"></div>
+    </div>
+
+    <!-- Hue Slider -->
+    <div class="relative w-8 hue-slider cursor-pointer  flex-col w-4 md:w-8  rounded-lg shadow p-1 space-y-1" id="hueSlider"></div>
+  </main>
+
+  <!-- CSS Output -->
+  <footer class="w-full bg-gray-50  p-2 max-w-4xl mx-auto rounded-lg shadow p-1 md:p-4 mt-3 md:mt-6">
+    <h2 class="text-lg font-bold mb-1">CSS Output:</h2>
+    <pre id="cssOutput" class="bg-gray-100 p-3 rounded overflow-x-auto">
+ background-color: #EEAA15;
+    </pre>
+  </footer>
+
+   <!-- Left side content -->
+  <div class="w-full md:w-3/4 p-6 md:p-12">
+    <h1 class="text-4xl font-bold mb-4">Welcome to the Color Chart</h1>
+    <p class="text-gray-700 mb-8 leading-relaxed">
+     Looking for some already great color combinations? Our color chart features Tailwind CSS, flat design, Google's Material design and the classic web safe color palette, all with Hex color codes.
+    </p>
+    <a href="/chart.html"
+       class="inline-flex items-center px-4 py-3 border border-gray-400 rounded-lg text-blue-600 font-medium transition-all duration-300 hover:text-blue-800 hover:border-blue-600 group">
+      Get Started 
+      <i class="fas fa-arrow-right ml-2 transform transition-transform duration-300 group-hover:translate-x-1"></i>
+    </a>
+
+  </div>
+
+
+
+
+  <div class="flex flex-col md:flex-row items-center w-full px-10 py-8 md:p-12 gap-6">
+    
+    <!-- Left Side: Text Content -->
+    <div class="w-full md:w-3/5 space-y-6">
+      <h1 class="text-4xl font-bold mb-2">Welcome to the CSS Gradient</h1>
+      <p class="text-gray-700 leading-relaxed mb-4">
+        Create stunning backgrounds with smooth color transitions using CSS gradients. From linear to radial designs, craft vibrant effects without images.
+        Customize and generate beautiful gradients for your websites in seconds.
+        Copy ready-to-use CSS code and apply it directly to your projects.
+      </p>
+      <a href="/Gradient.html"
+         class="inline-flex items-center px-4 py-3 border border-gray-400 rounded-lg text-blue-600 font-medium transition-all duration-300 hover:text-blue-800 hover:border-blue-600 group">
+        Get Started 
+        <i class="fas fa-arrow-right ml-2 transform transition-transform duration-300 group-hover:translate-x-1"></i>
+      </a>
+    </div>
+
+    <!-- Right Side: SVG Image -->
+    <div class="w-full md:w-2/5">
+      <img src="/image/undraw_choose-color_qtyu.svg" class="w-3/4 h-auto" viewBox="0 0 200 200">
+       
+    </div>
+
+  </div>
+
+    <div class="flex flex-col md:flex-row items-center w-full px-10 py-8 md:p-12 gap-6">
+    
+    <!-- Left Side: SVG Image -->
+    <div class="w-full md:w-2/5">
+      <img src="/image/undraw_time-management_fedt.svg" class="w-3/4 h-auto" viewBox="0 0 200 200">
+       
+    </div>
+
+    <!-- Right Side: Text Content -->
+    <div class="w-full md:w-3/5 space-y-6">
+      <h1 class="text-4xl font-bold mb-2">Welcome to the Color Shades Tool</h1>
+      <p class="text-gray-700 leading-relaxed mb-4">
+       Color shades are lighter and darker variations of a particular color, created by adding white or black respectively, however, “shade” is often used to refer the whole range of color variants.
+      </p>
+      <a href="/shades.html"
+         class="inline-flex items-center px-4 py-3 border border-gray-400 rounded-lg text-blue-600 font-medium transition-all duration-300 hover:text-blue-800 hover:border-blue-600 group">
+        Get Started 
+        <i class="fas fa-arrow-right ml-2 transform transition-transform duration-300 group-hover:translate-x-1"></i>
+      </a>
+    </div>
+
+  </div>
+  
+
+
+   <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-200">
+    <div class="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
+      
+      <!-- Footer Name -->
+      <div class="text-xl font-bold">CSS ColorZik</div>
+      
+      <!-- Nav Links -->
+      <nav class="flex space-x-6">
+        <a href="/about.html" class="hover:text-white transition">About</a>
+        <a href="/contact.html" class="hover:text-white transition">Contact</a>
+        <a href="https://colorzip.blogspot.com/" class="hover:text-white transition">Blog</a>
+         <a href="/Terms.html" class="hover:text-white transition">Terms & Conditions</a>
+      </nav>
+
+      <!-- Social Links -->
+      <div class="flex space-x-4">
+        <a href="https://www.facebook.com/share/18YEMUBhnJ/" class="hover:text-white transition">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="hover:text-white transition">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.instagram.com/gopi.dir?igsh=NWExZHVtaTZteGRi" class="hover:text-white transition">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="hover:text-white transition">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="border-t border-gray-700 text-center py-3 text-sm">
+      &copy; 2025 CSS ColorZik. All rights reserved.
+    </div>
+  </footer>
+
+
+
+
+
+ 
+
+
+
+
+  
+  <script>
+    const gradientBox = document.getElementById('gradientBox');
+    const hueSlider = document.getElementById('hueSlider');
+    const pickerIndicator = document.getElementById('pickerIndicator');
+    const colorPreview = document.getElementById('colorPreview');
+    const hexCode = document.getElementById('hexCode');
+    const rgbCode = document.getElementById('rgbCode');
+    const hslCode = document.getElementById('hslCode');
+    const cssOutput = document.getElementById('cssOutput');
+    const copyBtn = document.getElementById('copyBtn');
+
+    let hue = 41; // Default hue (gold-yellow)
+
+    function hslToHex(h, s, l) {
+      s /= 100;
+      l /= 100;
+      let c = (1 - Math.abs(2 * l - 1)) * s;
+      let x = c * (1 - Math.abs((h / 60) % 2 - 1));
+      let m = l - c / 2;
+      let r = 0, g = 0, b = 0;
+      if (0 <= h && h < 60) {r = c; g = x; b = 0;}
+      else if (60 <= h && h < 120) {r = x; g = c; b = 0;}
+      else if (120 <= h && h < 180) {r = 0; g = c; b = x;}
+      else if (180 <= h && h < 240) {r = 0; g = x; b = c;}
+      else if (240 <= h && h < 300) {r = x; g = 0; b = c;}
+      else if (300 <= h && h < 360) {r = c; g = 0; b = x;}
+      r = Math.round((r + m) * 255);
+      g = Math.round((g + m) * 255);
+      b = Math.round((b + m) * 255);
+      return rgbToHex(r, g, b);
+    }
+
+    function rgbToHex(r, g, b) {
+      return "#" + [r, g, b].map(x => {
+        const hex = x.toString(16);
+        return hex.length === 1 ? "0" + hex : hex;
+      }).join('').toUpperCase();
+    }
+
+    function updateColor(s, l) {
+      const hex = hslToHex(hue, s, l);
+      const rgb = hslToRgb(hue, s, l);
+      colorPreview.style.backgroundColor = hex;
+      hexCode.textContent = hex;
+      rgbCode.textContent = `${rgb.r}, ${rgb.g}, ${rgb.b}`;
+      hslCode.textContent = `${hue}°, ${s}%, ${l}%`;
+      cssOutput.textContent = `background-color: ${hex};`;
+    }
+
+    function hslToRgb(h, s, l) {
+      s /= 100;
+      l /= 100;
+      let c = (1 - Math.abs(2 * l - 1)) * s;
+      let x = c * (1 - Math.abs((h / 60) % 2 - 1));
+      let m = l - c / 2, r, g, b;
+      if (h < 60) {r = c; g = x; b = 0;}
+      else if (h < 120) {r = x; g = c; b = 0;}
+      else if (h < 180) {r = 0; g = c; b = x;}
+      else if (h < 240) {r = 0; g = x; b = c;}
+      else if (h < 300) {r = x; g = 0; b = c;}
+      else {r = c; g = 0; b = x;}
+      r = Math.round((r + m) * 255);
+      g = Math.round((g + m) * 255);
+      b = Math.round((b + m) * 255);
+      return {r, g, b};
+    }
+
+    gradientBox.addEventListener('click', (e) => {
+      const rect = gradientBox.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const s = Math.round((x / rect.width) * 100);
+      const l = Math.round(100 - (y / rect.height) * 100);
+      pickerIndicator.style.left = `${x}px`;
+      pickerIndicator.style.top = `${y}px`;
+      updateColor(s, l);
+    });
+
+    hueSlider.addEventListener('click', (e) => {
+      const rect = hueSlider.getBoundingClientRect();
+      const y = e.clientY - rect.top;
+      hue = Math.round(360 - (y / rect.height) * 360);
+      gradientBox.style.background = `linear-gradient(to top, #000, hsl(${hue}, 100%, 50%), #fff)`;
+    });
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(hexCode.textContent).then(() => {
+        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        setTimeout(() => copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy HEX', 1500);
+      });
+    });
+
+
+ 
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+ 
+
+  </script>
+
+
+  
+
+</body>
+</html>

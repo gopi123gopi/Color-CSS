@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Gradient Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body id="pageBg" class="min-h-screen w-full text-white transition-all duration-300 flex items-center justify-center relative ex-direction: column;">
+
+  <!-- Overlay for controls -->
+  <div class="fixed inset-0 bg-black/50 z-0"></div>
+
+ 
+
+
+
+ <div class="relative z-10 w-full max-w-2xl mx-auto p-6 bg-white/80 backdrop-blur-md rounded-xl shadow-xl text-black m-4">
+
+
+    <h1 class="text-3xl font-bold text-center mb-6">
+      🎨 CSS Gradient Generator
+    </h1>
+
+
+
+    <!-- Controls -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+      <div>
+        <label class="block text-sm font-semibold mb-1"><i class="fas fa-palette mr-2 text-red-500"></i>Color 1</label>
+        <input type="color" id="color1" value="#ff0000" class="w-full h-12 rounded-md border border-gray-300">
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold mb-1"><i class="fas fa-paint-brush mr-2 text-blue-500"></i>Color 2</label>
+        <input type="color" id="color2" value="#0000ff" class="w-full h-12 rounded-md border border-gray-300">
+      </div>
+
+      <div class="sm:col-span-2">
+        <label class="block text-sm font-semibold mb-1"><i class="fas fa-arrows-alt-h mr-2 text-green-500"></i>Direction</label>
+        <select id="direction" class="w-full rounded-md border-gray-300 p-2">
+          <option value="to right">→ To Right</option>
+          <option value="to left">← To Left</option>
+          <option value="to bottom">↓ To Bottom</option>
+          <option value="to top">↑ To Top</option>
+          <option value="to bottom right">↘ Bottom Right</option>
+          <option value="to bottom left">↙ Bottom Left</option>
+          <option value="to top right">↗ Top Right</option>
+          <option value="to top left">↖ Top Left</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- CSS Output -->
+    <div class="mt-4">
+      <label class="block text-sm font-semibold mb-1"><i class="fas fa-code mr-2 text-purple-600"></i>Generated CSS:</label>
+      <textarea id="cssCode" readonly class="w-full h-20 p-2 rounded-md border border-gray-300 font-mono resize-none text-sm bg-white"></textarea>
+      <button onclick="copyCSS()" class="mt-3 flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md font-semibold">
+        <i class="fas fa-copy"></i> Copy CSS
+      </button>
+    </div>
+  </div>
+
+
+
+  <!-- Script -->
+  <script>
+    const color1 = document.getElementById('color1');
+    const color2 = document.getElementById('color2');
+    const direction = document.getElementById('direction');
+    const cssCode = document.getElementById('cssCode');
+    const pageBg = document.getElementById('pageBg');
+
+    function updateGradient() {
+      const gradient = `linear-gradient(${direction.value}, ${color1.value}, ${color2.value})`;
+      pageBg.style.background = gradient;
+      cssCode.value = `background: ${gradient};`;
+    }
+
+    function copyCSS() {
+      cssCode.select();
+      document.execCommand('copy');
+     
+    }
+
+    // Event listeners
+    color1.addEventListener('input', updateGradient);
+    color2.addEventListener('input', updateGradient);
+    direction.addEventListener('change', updateGradient);
+
+    updateGradient(); // initial load
+  </script>
+</body>
+</html>

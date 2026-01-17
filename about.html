@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - CSS Color Picker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+   <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-indigo-600 text-white shadow-md">
+    <div class="container mx-auto flex justify-between items-center p-4">
+      <h1 class="text-xl font-bold">CSS Color Picker</h1>
+      <nav>
+        <ul class="flex gap-6 text-sm font-medium">
+          <li><a href="index.html" class="hover:text-yellow-300">Home</a></li>
+          <li><a href="about.html" class="hover:text-yellow-300">About</a></li>
+          <li><a href="/contact.html" class="hover:text-yellow-300">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section with Background Image -->
+  <section class="relative bg-cover bg-center h-96" style="background-image: url('/image/brand-colors-750x300.jpg');">
+    <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-center text-white px-4">
+      <h2 class="text-2xl md:text-3xl mb-2">IT'S TIME TO</h2>
+      <h1 class="text-4xl md:text-5xl font-bold">KNOW US</h1>
+    </div>
+  </section>
+
+  <!-- About Details Paragraph -->
+  <section class="bg-gray-100 py-10">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold text-indigo-700 mb-4">IN LOVE WITH COLORS</h2>
+      <p class="text-gray-700 max-w-3xl mx-auto">
+        We are passionate creators who love exploring the world of colors. This journey began with the need for a simple yet powerful tool to help designers and developers find perfect color combinations. Our CSS Color Picker was born from that inspiration. Over time, we have enhanced it with user-friendly features, advanced color codes, and responsive design. We’re excited to share this tool with you and continue making it better with your support.
+      </p>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="container mx-auto px-4 py-10">
+    <div class="grid gap-8 md:grid-cols-3 text-center">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <div class="text-indigo-600 text-4xl mb-3">🎨</div>
+        <h3 class="text-xl font-semibold mb-2">Web-Safe Colors</h3>
+        <p class="text-gray-600 text-sm">Explore 216+ web-safe colors and quickly grab codes for your CSS or UI projects.</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <div class="text-indigo-600 text-4xl mb-3">⚡</div>
+        <h3 class="text-xl font-semibold mb-2">Fast & Responsive</h3>
+        <p class="text-gray-600 text-sm">Optimized for all devices with blazing-fast performance and a responsive layout.</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <div class="text-indigo-600 text-4xl mb-3">🔗</div>
+        <h3 class="text-xl font-semibold mb-2">Copy with One Click</h3>
+        <p class="text-gray-600 text-sm">Easily copy HEX or RGB codes with a single click, saving you valuable time.</p>
+      </div>
+    </div>
+  </section>
+
+      <!-- Creator Details -->
+<section class="bg-gray-50 py-10 px-4">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    
+    <!-- Creator Info -->
+    <div class="flex flex-col items-center md:items-start text-center md:text-left space-y-4">
+      <img src="/image/k (1).png" alt="Creator" class="w-32 h-32 rounded-full shadow-lg object-cover">
+      <h3 class="text-2xl font-bold text-gray-800">Gopi</h3>
+      <p class="text-gray-600">
+        Founder of <strong>CSS ColorZik</strong>, passionate about web design, color theory,
+        and building tools that help designers and developers create stunning visuals.
+      </p>
+      <div class="flex space-x-4 mt-2">
+        <a href="https://facebook.com" class="text-gray-600 hover:text-blue-600"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" class="text-gray-600 hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com" class="text-gray-600 hover:text-pink-500"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com" class="text-gray-600 hover:text-blue-700"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <!-- Image -->
+    <div class="flex justify-center md:justify-end">
+      <img src="/image/Flux_Dev_A_vibrant_and_eclectic_wallpaper_design_featuring_a_d_3.jpg" alt="Creator Illustration" class="w-72">
+    </div>
+
+  </div>
+</section>
+
+<!-- Blog Section -->
+<section class="bg-white py-10 px-4">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold text-gray-800 text-center mb-6">Latest Blog Posts</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Blog Card -->
+      <a href="https://colorzip.blogspot.com/2025/01/understanding-css-gradients.html" class="bg-gray-50 rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col">
+        <img src="/image/blog1.jpg" alt="CSS Gradients" class="rounded-md mb-3 object-cover h-40 w-full">
+        <h3 class="text-lg font-semibold text-gray-800 mb-1">Understanding CSS Gradients</h3>
+        <p class="text-gray-600 text-sm">Learn how to create smooth, beautiful gradients for your websites...</p>
+      </a>
+
+      <!-- Blog Card -->
+      <a href="https://colorzip.blogspot.com/2025/01/web-safe-colors-explained.html" class="bg-gray-50 rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col">
+        <img src="/image/blog2.jpg" alt="Web Safe Colors" class="rounded-md mb-3 object-cover h-40 w-full">
+        <h3 class="text-lg font-semibold text-gray-800 mb-1">Web Safe Colors Explained</h3>
+        <p class="text-gray-600 text-sm">A complete guide to the 216 web-safe colors and their uses...</p>
+      </a>
+
+      <!-- Blog Card -->
+      <a href="https://colorzip.blogspot.com/2025/01/picking-perfect-color-palette.html" class="bg-gray-50 rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col">
+        <img src="/image/blog3.jpg" alt="Color Palette" class="rounded-md mb-3 object-cover h-40 w-full">
+        <h3 class="text-lg font-semibold text-gray-800 mb-1">Picking the Perfect Color Palette</h3>
+        <p class="text-gray-600 text-sm">Tips and tricks to choose colors that work perfectly together...</p>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+  <!-- Footer -->
+
+   <!-- Footer -->
+<footer class="bg-gray-800 text-gray-200 w-full mt-8">
+  <div class="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center md:items-start gap-6 text-center md:text-left">
+    
+    <!-- Footer Name -->
+    <div class="text-xl font-bold">CSS ColorZik</div>
+    
+    <!-- Nav Links -->
+    <nav class="flex flex-col md:flex-row gap-3 md:space-x-6">
+      <a href="/about.html" class="hover:text-white transition">About</a>
+      <a href="/contact.html" class="hover:text-white transition">Contact</a>
+      <a href="https://colorzip.blogspot.com/" class="hover:text-white transition">Blog</a>
+    </nav>
+
+    <!-- Social Links -->
+    <div class="flex justify-center space-x-4">
+      <a href="https://www.facebook.com/share/18YEMUBhnJ/" class="hover:text-white transition">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="#" class="hover:text-white transition">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://www.instagram.com/gopi.dir?igsh=NWExZHVtaTZteGRi" class="hover:text-white transition">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="#" class="hover:text-white transition">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Bottom Copyright -->
+  <div class="border-t border-gray-700 text-center py-3 text-sm">
+    &copy; 2025 CSS ColorZik. All rights reserved.
+  </div>
+</footer>
+
+</body>
+</html>

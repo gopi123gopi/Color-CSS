@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Color Shades Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script> <!-- Circular Color Picker -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.2/tinycolor.min.js"></script>
+  <style>
+    .color-box {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .color-box:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col items-center p-4">
+
+  <!-- Header -->
+  <header class="w-full max-w-3xl flex justify-center items-center mb-6">
+    <div class="flex w-full bg-white rounded-full shadow-md overflow-hidden">
+      <span class="flex items-center px-4 text-gray-500">
+      <i class="fa-solid fa-brush"></i>
+      </span>
+      <input id="colorInput" type="text" placeholder="Enter color name or hex code"
+        class="flex-grow p-3 outline-none text-gray-700" />
+      <button onclick="generateShadesFromInput()"
+        class="bg-blue-500 text-white px-4 py-3 font-semibold hover:bg-blue-600 transition">Enter</button>
+    </div>
+  </header>
+
+  <!-- Circular Color Picker -->
+  <div id="colorPicker" class="mb-6"></div>
+
+  <!-- Shades Palette -->
+  <section id="shadesPalette" class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-5xl mb-6"></section>
+
+  <!-- Color Details -->
+  <section id="colorDetails" class="w-full max-w-3xl bg-white p-4 rounded-xl shadow hidden">
+    <div class="flex justify-between items-center mb-2">
+      <h2 id="shadeName" class="text-xl font-bold"></h2>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-4">
+      <div class="flex justify-between items-center bg-gray-100 rounded-lg p-3 w-full">
+        <span id="hexValue" class="font-mono"></span>
+        <button onclick="copyToClipboard('hexValue')" class="text-blue-500"><i class="fas fa-copy"></i></button>
+      </div>
+      <div class="flex justify-between items-center bg-gray-100 rounded-lg p-3 w-full">
+        <span id="rgbValue" class="font-mono"></span>
+        <button onclick="copyToClipboard('rgbValue')" class="text-blue-500"><i class="fas fa-copy"></i></button>
+      </div>
+    </div>
+  </section>
+<!-- Info Section -->
+<section class="w-full max-w-full mt-12 bg-white p-6 rounded-xl shadow space-y-6 text-base">
+
+    <div>
+      <h2 class="text-2xl font-bold mb-2">How Does Color Shades Generator Work?</h2>
+      <p>
+        This tool lets you enter any color name or hex code to instantly explore its shades.<br>
+        A circular color picker allows live selection and real-time updates.<br>
+        Twelve lighter or darker shades are generated using smart color blending.<br>
+        Click a shade to view its HEX and RGB values, and easily copy them for your design.
+      </p>
+    </div>
+    <div>
+      <h2 class="text-2xl font-bold mb-2">How to Use Color Shades Generator?</h2>
+      <ul class="list-disc list-inside space-y-1">
+        <li>Enter a color name (e.g., red, skyblue) or hex code (e.g., #ff5733).</li>
+        <li>Use the circular color picker for real-time color selection.</li>
+        <li>Click the "Enter" button to generate shades.</li>
+        <li>View the 12-shade palette showing lighter/darker variants.</li>
+        <li>Hover over any shade to preview it with animation.</li>
+        <li>Click a shade to view its name, HEX, and RGB values.</li>
+        <li>Copy HEX or RGB using the provided copy buttons.</li>
+        <li>Change the base color anytime using the input or picker.</li>
+        <li>Explore various shades for design inspiration or palette creation.</li>
+        <li>Use the copied values directly in your design or CSS code.</li>
+      </ul>
+    </div>
+
+    <div>
+  <h2 class="text-2xl font-bold mb-2">Credits</h2>
+  <p>
+    This tool uses <strong>iro.js</strong> for the color picker and <strong>tinycolor.js</strong> for color manipulation.<br>
+    Designed with <strong>Tailwind CSS</strong> and enhanced with <strong>Font Awesome</strong> icons.<br>
+    Built by a developer passionate about colors, accessibility, and clean UI.<br>
+    All components and libraries are open-source and web-optimized.
+  </p>
+</div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-200 w-full">
+    <div class="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
+      
+      <!-- Footer Name -->
+      <div class="text-xl font-bold">CSS ColorZik</div>
+      
+      <!-- Nav Links -->
+      <nav class="flex space-x-6">
+        <a href="/about.html" class="hover:text-white transition">About</a>
+        <a href="/contact.html" class="hover:text-white transition">Contact</a>
+        <a href="https://colorzip.blogspot.com/" class="hover:text-white transition">Blog</a>
+      </nav>
+
+      <!-- Social Links -->
+      <div class="flex space-x-4">
+        <a href="https://www.facebook.com/share/18YEMUBhnJ/" class="hover:text-white transition">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="hover:text-white transition">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.instagram.com/gopi.dir?igsh=NWExZHVtaTZteGRi" class="hover:text-white transition">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="hover:text-white transition">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="border-t border-gray-700 text-center py-3 text-sm">
+      &copy; 2025 CSS ColorZik. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    const picker = new iro.ColorPicker("#colorPicker", {
+      width: 220,
+      color: "#ff0000",
+      borderWidth: 2,
+      borderColor: "#fff"
+    });
+
+    picker.on("color:change", function(color) {
+      const hex = color.hexString;
+     document.getElementById('colorInput').value = color.hexString;
+      generateShades(hex);
+    });
+
+   function generateShadesFromInput() {
+  const input = document.getElementById('colorInput').value.trim();
+  if (!input) return;
+
+  const tc = tinycolor(input);
+  if (!tc.isValid()) {
+    alert("Invalid color name or hex code.");
+    return;
+  }
+
+  picker.color.set(tc.toHexString()); // convert named color to hex before assigning
+  generateShades(tc.toHexString());  // pass hex to generate shades
+}
+
+
+    function generateShades(inputColor) {
+      const palette = document.getElementById('shadesPalette');
+      palette.innerHTML = '';
+
+      let baseColor;
+      try {
+        baseColor = tinycolor(inputColor);
+        if (!baseColor.isValid()) throw new Error();
+      } catch {
+        alert('Invalid color');
+        return;
+      }
+
+      for (let i = 1; i <= 12; i++) {
+        const shade = baseColor.clone().lighten(i * 5 - 30);
+        const hex = shade.toHexString();
+
+        const box = document.createElement('div');
+        box.className = 'color-box rounded-xl h-24';
+        box.style.backgroundColor = hex;
+        box.onclick = () => showColorDetails(shade);
+        palette.appendChild(box);
+      }
+    }
+
+    function showColorDetails(shade) {
+      document.body.style.backgroundColor = shade.toHexString();
+      document.getElementById('colorDetails').classList.remove('hidden');
+      document.getElementById('shadeName').innerText = shade.toName() || 'Custom Color';
+      document.getElementById('hexValue').innerText = shade.toHexString();
+      document.getElementById('rgbValue').innerText = shade.toRgbString();
+    }
+
+    function copyToClipboard(id) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text);
+    }
+
+    // Initialize with picker color
+    generateShades(picker.color.hexString);
+  </script>
+
+</body>
+</html>

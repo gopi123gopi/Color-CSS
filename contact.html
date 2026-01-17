@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800">
+
+  <header class="bg-gray-800 text-white shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="/" class="text-2xl font-bold">CSS ColorZik</a>
+      <nav class="hidden md:flex space-x-6">
+        <a href="/index.html" class="hover:text-gray-300">Home</a>
+        <a href="/about.html" class="hover:text-gray-300">About</a>
+        <a href="/contact.html" class="hover:text-gray-300">Contact</a>
+        <a href="https://colorzip.blogspot.com/" class="hover:text-gray-300">Blog</a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="menu-btn" class="md:hidden focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Nav -->
+    <nav id="mobile-menu" class="hidden flex-col space-y-2 px-4 pb-4 md:hidden bg-gray-700">
+      <a href="/index.html" class="block hover:text-gray-300">Home</a>
+      <a href="/about.html" class="block hover:text-gray-300">About</a>
+      <a href="/contact.html" class="block hover:text-gray-300">Contact</a>
+      <a href="https://colorzip.blogspot.com/" class="block hover:text-gray-300">Blog</a>
+    </nav>
+  </header>
+
+  <section class="min-h-screen flex items-center justify-center px-4 py-12">
+    <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+
+      <!-- Left Side -->
+      <div class="space-y-6 text-center md:text-left">
+        <h2 class="text-3xl md:text-4xl font-bold leading-snug">
+          Let's talk about<br><span class="text-black">everything!</span>
+        </h2>
+        <p class="text-gray-600 text-base leading-relaxed">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
+          Voluptas debitis, fugit natus?
+        </p>
+        <div class="flex justify-center md:justify-start">
+          <img src="/image/undraw_personal-text_090t.svg" alt="Contact Illustration" class="w-64 md:w-72">
+        </div>
+      </div>
+
+      <!-- Right Side -->
+      <div>
+        <form id="contact-form" class="space-y-4" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="7c39382e-59ae-4478-afe2-7c80f9a92322">
+
+          <!-- This sets the name that appears in the receiver's email -->
+          <input type="hidden" name="from_name" value="CSS ColorZik">
+
+          <!-- Optional: This sets the subject line in the receiver's email -->
+          <input type="hidden" name="subject" value="New message from CSS ColorZik Contact Form">
+
+          <!-- Redirect after successful submission -->
+          <input type="hidden" name="redirect" value="thankyou.html">
+
+          <input type="text" name="name" placeholder="Your name" 
+            class="w-full border border-gray-300 px-4 py-3 rounded outline-none focus:ring-2 focus:ring-gray-300" required />
+
+          <input type="email" name="email" placeholder="Email" 
+            class="w-full border border-gray-300 px-4 py-3 rounded outline-none focus:ring-2 focus:ring-gray-300" required />
+
+          <textarea name="message" rows="5" placeholder="Write your message" 
+            class="w-full border border-gray-300 px-4 py-3 rounded outline-none focus:ring-2 focus:ring-gray-300" required></textarea>
+
+          <button type="submit" 
+            class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition duration-200">
+            Send Message
+          </button>
+        </form>
+
+        <!-- Success/Error message -->
+        <p id="form-status" class="text-green-600 mt-2 hidden">Message sent successfully!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-200 w-full mt-8">
+    <div class="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center md:items-start gap-6 text-center md:text-left">
+      <div class="text-xl font-bold">CSS ColorZik</div>
+      <nav class="flex flex-col md:flex-row gap-3 md:space-x-6">
+        <a href="/about.html" class="hover:text-white transition">About</a>
+        <a href="/contact.html" class="hover:text-white transition">Contact</a>
+        <a href="#services" class="hover:text-white transition">Services</a>
+      </nav>
+      <div class="flex justify-center space-x-4">
+        <a href="https://www.facebook.com/share/18YEMUBhnJ/" class="hover:text-white transition">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="hover:text-white transition">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.instagram.com/gopi.dir?igsh=NWExZHVtaTZteGRi" class="hover:text-white transition">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="hover:text-white transition">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+    </div>
+    <div class="border-t border-gray-700 text-center py-3 text-sm">
+      &copy; 2025 CSS ColorZik. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- JS for Menu Toggle -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Optional JS form success message (if not redirecting)
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        status.classList.remove('hidden');
+        status.textContent = "Message sent successfully!";
+        form.reset();
+      } else {
+        status.classList.remove('hidden');
+        status.classList.add('text-red-600');
+        status.textContent = "Oops! Something went wrong.";
+      }
+    });
+  </script>
+
+</body>
+</html>
+
+
